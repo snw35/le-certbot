@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -uex
+set -ue
 
 # If we are passed arg flags then run against certbot certonly like an entrypoint
 if [ "${1:0:1}" = '-' ]; then
