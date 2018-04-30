@@ -27,14 +27,12 @@ RUN apk --no-cache --virtual build.deps add \
     && pip install --no-cache ./certbot-$CERTBOT_VERSION \
     && rm -rf /root/certbot-$CERTBOT_VERSION \
     && rm -f /root/v$CERTBOT_VERSION.tar.gz \
-    && apk del build.deps \
-    && adduser -u 10001 -S certbot
+    && apk del build.deps
 
 COPY docker-entrypoint.sh /
 
-RUN echo "$((1 + RANDOM % 60)) 4 * * * certbot renew" > /etc/crontabs/certbot \
-        && chmod 0600 /etc/crontabs/certbot \
-        && chmod +x /docker-entrypoint.sh
+RUN echo "$((1 + RANDOM % 60)) 4 * * * certbot renew" > /etc/crontabs/root \
+    && chmod +x /docker-entrypoint.sh
 
 # Required env variables, defaults are handled in entrypoint script
 # Email address to register letsencrypt account with
