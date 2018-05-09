@@ -20,6 +20,7 @@ RUN apk --no-cache --virtual build.deps add \
     libffi-dev \
     openssl-dev \
     python2-dev \
+    paxctl \
     && wget https://github.com/certbot/certbot/archive/v$CERTBOT_VERSION.tar.gz \
     && echo "$CERTBOT_DOWNLOAD_SHA256  v$CERTBOT_VERSION.tar.gz" | sha256sum -c - \
     && tar -xzf ./v$CERTBOT_VERSION.tar.gz \
@@ -27,6 +28,7 @@ RUN apk --no-cache --virtual build.deps add \
     && pip install --no-cache ./certbot-$CERTBOT_VERSION \
     && rm -rf /root/certbot-$CERTBOT_VERSION \
     && rm -f /root/v$CERTBOT_VERSION.tar.gz \
+    && paxctl -cm `which python` \
     && apk del build.deps
 
 COPY docker-entrypoint.sh /
