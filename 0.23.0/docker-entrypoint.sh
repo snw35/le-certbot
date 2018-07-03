@@ -20,10 +20,10 @@ if [ "$1" = 'crond' ]; then
     fi
 
     # Get all domain ENV vars
-    ENVDomains=`env | sort | awk -F "=" '{print $1}' | grep "LE_DOMAIN_.*"`
+    ENVDomains=`env | sort | awk -F "=" '{print $1}' | grep "LE_DOMAIN_.*" || true`
 
     # Get all domains that certbot has certificates for in this volume
-    CertBotDomains=`certbot -n certificates | grep "Domains:"`
+    CertBotDomains=`certbot -n certificates | grep "Domains:" || true`
 
     # Make sure there is at least one domain ENV var set
     if [ -z "${ENVDomains:-}" ]; then
@@ -92,7 +92,7 @@ if [ "$1" = 'crond' ]; then
         done
         # Re-check cerbot domains to make sure there is now at least one certificate
         sleep 2
-        CertBotDomains=`certbot -n certificates | grep "Domains:"`
+        CertBotDomains=`certbot -n certificates | grep "Domains:" || true`
         if [ -z "${CertBotDomains:-}" ]; then
             echo "ERROR: no certificates were generated!"
             echo "Exiting as there are no cerficates to renew!"
