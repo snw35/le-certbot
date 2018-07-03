@@ -3,6 +3,7 @@ language: bash
 
 env:
   - VERSION=0.23.0
+  - VERSION=0.25.1
 
 install:
     - git clone https://github.com/docker-library/official-images.git ~/official-images
