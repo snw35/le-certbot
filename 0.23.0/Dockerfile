@@ -29,6 +29,8 @@ RUN apk --no-cache --virtual build.deps add \
     && rm -rf /root/certbot-$CERTBOT_VERSION \
     && rm -f /root/v$CERTBOT_VERSION.tar.gz \
     && paxctl -cm `which python` \
+    && mkdir -p /var/log/letsencrypt \
+    && ln -s /dev/stdout /var/log/letsencrypt/letsencrypt.log \
     && apk del build.deps
 
 COPY docker-entrypoint.sh /
