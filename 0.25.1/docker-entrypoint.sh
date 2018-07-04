@@ -63,7 +63,7 @@ if [ "$1" = 'crond' ]; then
 
                         # Generate normal certificate
                         if [ "$LE_TEST" = "n" ]; then
-                            certbot certonly --webroot -w /usr/share/nginx/html -d "${!DomainVar}" --email "$LE_EMAIL"--agree-tos --non-interactive --keep-until-expiring --rsa-key-size 4096 --hsts --uir --preferred-challenges http
+                            certbot certonly --webroot -w /usr/share/nginx/html -d "${!DomainVar}" --email "$LE_EMAIL" --agree-tos --non-interactive --keep-until-expiring --rsa-key-size 4096 --hsts --uir --preferred-challenges http
 
                             echo "Certificate generated. Pausing and continuing..."
                             sleep 2
