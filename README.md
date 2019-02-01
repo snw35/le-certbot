@@ -10,9 +10,9 @@ This image can be used in two main ways:
 
 ### With a companion webserver
 
-Please see my [le-docker](https://github.com/snw35/le-docker) repository for the docker-compose file that will automatically deploy this image alongside my [le-nginx](https://github.com/snw35/le-nginx) proxy container.
+Please see [le-docker](https://github.com/snw35/le-docker) for the docker-compose file that will automatically deploy this image alongside the [le-nginx](https://github.com/snw35/le-nginx) proxy container.
 
-The advantage this will give you is that [le-nginx](https://github.com/snw35/le-nginx) has been configured to redirect all traffic to port 443 while still allowing through the letsencrypt challenges, so you will have working port 80 -> 443 redirection.
+The [le-nginx](https://github.com/snw35/le-nginx) proxy has been configured to redirect all traffic to port 443 (HTTPS) while still allowing through the letsencrypt challenges.
 
 ### Standalone
 
