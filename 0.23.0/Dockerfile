@@ -21,17 +21,18 @@ RUN apk --no-cache --virtual build.deps add \
     openssl-dev \
     python2-dev \
     paxctl \
-    && wget https://github.com/certbot/certbot/archive/v$CERTBOT_VERSION.tar.gz \
-    && echo "$CERTBOT_DOWNLOAD_SHA256  v$CERTBOT_VERSION.tar.gz" | sha256sum -c - \
-    && tar -xzf ./v$CERTBOT_VERSION.tar.gz \
-    && pip install --upgrade pip \
-    && pip install --no-cache ./certbot-$CERTBOT_VERSION \
-    && rm -rf /root/certbot-$CERTBOT_VERSION \
-    && rm -f /root/v$CERTBOT_VERSION.tar.gz \
-    && paxctl -cm `which python` \
-    && mkdir -p /var/log/letsencrypt \
-    && ln -sf /dev/stdout /var/log/letsencrypt/letsencrypt.log \
-    && apk del build.deps
+  && wget https://github.com/certbot/certbot/archive/v$CERTBOT_VERSION.tar.gz \
+  && echo "$CERTBOT_DOWNLOAD_SHA256  v$CERTBOT_VERSION.tar.gz" | sha256sum -c - \
+  && tar -xzf ./v$CERTBOT_VERSION.tar.gz \
+  && pip install --upgrade pip \
+  && pip install --cache-dir=/tmp ./certbot-$CERTBOT_VERSION \
+  && rm -rf /root/certbot-$CERTBOT_VERSION \
+  && rm -f /root/v$CERTBOT_VERSION.tar.gz \
+  && paxctl -cm `which python` \
+  && mkdir -p /var/log/letsencrypt \
+  && ln -sf /dev/stdout /var/log/letsencrypt/letsencrypt.log \
+  && apk del build.deps \
+  && rm -rf /tmp/*
 
 COPY docker-entrypoint.sh /
 
