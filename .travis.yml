@@ -14,11 +14,13 @@ install:
 before_script:
   - env | sort
   - cd "$VERSION"
-  - image="le-certbot:${VERSION}"
+  - image="$DOCKER_USERNAME/le-certbot:${VERSION}"
 
 script:
   - travis_retry docker build -t "$image" .
   - ~/official-images/test/run.sh "$image"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push "$image"
 
 after_script:
-    - docker images
+  - docker images
