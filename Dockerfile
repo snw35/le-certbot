@@ -6,7 +6,8 @@ RUN apk --update --no-cache add \
     libffi \
     libssl1.1 \
     openssl \
-    bash
+    bash \
+    coreutils
 
 WORKDIR /root/
 
@@ -30,7 +31,6 @@ RUN apk --no-cache --virtual build.deps add \
   && rm -rf /root/certbot-$CERTBOT_VERSION \
   && rm -f /root/$CERTBOT_FILENAME \
   && mkdir -p /var/log/letsencrypt \
-  && ln -sf /dev/stdout /var/log/letsencrypt/letsencrypt.log \
   && apk del build.deps \
   && rm -rf /tmp/*
 
