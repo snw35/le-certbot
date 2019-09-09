@@ -1,36 +1,34 @@
-FROM alpine:3.8
+FROM alpine:3.10
 
 RUN apk --update --no-cache add \
-    python2 \
+    python3 \
     augeas \
-    py2-pip \
     libffi \
-    libssl1.0 \
+    libssl1.1 \
     openssl \
     bash
 
 WORKDIR /root/
 
-ENV CERTBOT_VERSION 0.30.2
+ENV CERTBOT_VERSION 0.38.0
 ENV CERTBOT_URL https://github.com/certbot/certbot/archive
 ENV CERTBOT_FILENAME v$CERTBOT_VERSION.tar.gz
-ENV CERTBOT_SHA256 4c411b7d60752259ee9a2d69935a3045ee94ba725febdb1f5f62ed537935fabe
+ENV CERTBOT_SHA256 985402cca6348850599a45ec322eb6cf06b6cfbef55abbadccdd209d6f4da5dc
 
 RUN apk --no-cache --virtual build.deps add \
     gcc \
     musl-dev \
     libffi-dev \
     openssl-dev \
-    python2-dev \
+    python3-dev \
     paxctl \
   && wget $CERTBOT_URL/$CERTBOT_FILENAME \
   && echo "$CERTBOT_SHA256  $CERTBOT_FILENAME" | sha256sum -c - \
   && tar -xzf ./$CERTBOT_FILENAME \
-  && pip install --upgrade pip \
-  && pip install --cache-dir=/tmp ./certbot-$CERTBOT_VERSION \
+  && pip3 install --upgrade pip \
+  && pip3 install --cache-dir=/tmp ./certbot-$CERTBOT_VERSION \
   && rm -rf /root/certbot-$CERTBOT_VERSION \
   && rm -f /root/$CERTBOT_FILENAME \
-  && paxctl -cm `which python` \
   && mkdir -p /var/log/letsencrypt \
   && ln -sf /dev/stdout /var/log/letsencrypt/letsencrypt.log \
   && apk del build.deps \
