@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.10.3
 
 RUN apk --update --no-cache add \
     python3 \
@@ -11,10 +11,10 @@ RUN apk --update --no-cache add \
 
 WORKDIR /root/
 
-ENV CERTBOT_VERSION 0.38.0
+ENV CERTBOT_VERSION 0.39.0
 ENV CERTBOT_URL https://github.com/certbot/certbot/archive
 ENV CERTBOT_FILENAME v$CERTBOT_VERSION.tar.gz
-ENV CERTBOT_SHA256 985402cca6348850599a45ec322eb6cf06b6cfbef55abbadccdd209d6f4da5dc
+ENV CERTBOT_SHA256 af9fcea7b23cc64e67accfb54351b87a7c43897ae59fcd74459067d814d2f501
 
 RUN apk --no-cache --virtual build.deps add \
     gcc \
