@@ -1,7 +1,6 @@
-FROM alpine:3.10.3
+FROM python:3.8.0-alpine3.10
 
 RUN apk --update --no-cache add \
-    python3 \
     augeas \
     libffi \
     libssl1.1 \
@@ -11,28 +10,28 @@ RUN apk --update --no-cache add \
 
 WORKDIR /root/
 
-ENV CERTBOT_VERSION 0.40.1
+ENV CERTBOT_VERSION 1.0.0
 ENV CERTBOT_URL https://github.com/certbot/certbot/archive
 ENV CERTBOT_FILENAME v$CERTBOT_VERSION.tar.gz
-ENV CERTBOT_SHA256 54299ee77a6c0eaf7e11e25bdf492d2a8ed671eba8fc4e7aa9f9d45b1743e41d
+ENV CERTBOT_SHA256 cb853d4aeff1bd28c6a20bb4b26e782a791a28dfee5b6cf410ef2b6f4f580bd8
 
 RUN apk --no-cache --virtual build.deps add \
     gcc \
     musl-dev \
     libffi-dev \
     openssl-dev \
-    python3-dev \
     paxctl \
   && wget $CERTBOT_URL/$CERTBOT_FILENAME \
   && echo "$CERTBOT_SHA256  $CERTBOT_FILENAME" | sha256sum -c - \
   && tar -xzf ./$CERTBOT_FILENAME \
   && pip3 install --upgrade pip \
-  && pip3 install --cache-dir=/tmp ./certbot-$CERTBOT_VERSION \
+  && pip3 install --cache-dir=/tmp ./certbot-$CERTBOT_VERSION/certbot \
   && rm -rf /root/certbot-$CERTBOT_VERSION \
   && rm -f /root/$CERTBOT_FILENAME \
   && mkdir -p /var/log/letsencrypt \
   && apk del build.deps \
-  && rm -rf /tmp/*
+  && rm -rf /tmp/* \
+  && certbot --help
 
 COPY docker-entrypoint.sh /
 
