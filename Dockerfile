@@ -10,10 +10,10 @@ RUN apk --update --no-cache add \
 
 WORKDIR /root/
 
-ENV CERTBOT_VERSION 1.3.0
+ENV CERTBOT_VERSION 1.4.0
 ENV CERTBOT_URL https://github.com/certbot/certbot/archive
 ENV CERTBOT_FILENAME v$CERTBOT_VERSION.tar.gz
-ENV CERTBOT_SHA256 9b531a527bc7908fa23f81ecb449ad8351791342a9bd5b1d09b15acd78dc8840
+ENV CERTBOT_SHA256 f0494f04f9c8fea08f0b485ee6390a88cbb048bb51b987980cb902ef033faab1
 
 RUN apk --no-cache --virtual build.deps add \
     gcc \
