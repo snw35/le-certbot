@@ -20,7 +20,6 @@ RUN apk --no-cache --virtual build.deps add \
     musl-dev \
     libffi-dev \
     openssl-dev \
-    paxctl \
   && wget $CERTBOT_URL/$CERTBOT_FILENAME \
   && echo "$CERTBOT_SHA256  $CERTBOT_FILENAME" | sha256sum -c - \
   && tar -xzf ./$CERTBOT_FILENAME \
