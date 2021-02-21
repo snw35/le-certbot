@@ -16,10 +16,12 @@ ENV CERTBOT_FILENAME v$CERTBOT_VERSION.tar.gz
 ENV CERTBOT_SHA256 4eef9aed7cda80ef1a7bfc127f02b29277c7c3f462aa969dd1234dbfeca51e46
 
 RUN apk --no-cache --virtual build.deps add \
+    cargo \
     gcc \
-    musl-dev \
     libffi-dev \
+    musl-dev \
     openssl-dev \
+    rust \
   && wget $CERTBOT_URL/$CERTBOT_FILENAME \
   && echo "$CERTBOT_SHA256  $CERTBOT_FILENAME" | sha256sum -c - \
   && tar -xzf ./$CERTBOT_FILENAME \
