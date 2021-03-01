@@ -1,0 +1,9 @@
+[__config__]
+oldver = "old_ver.json"
+newver = "new_ver.json"
+
+[CERTBOT]
+source = "github"
+github = "certbot/certbot"
+use_max_tag = true
+prefix = "v"
