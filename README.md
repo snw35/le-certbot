@@ -1,5 +1,7 @@
 # le-certbot
 
+ * [Travis CI: ![Build Status](https://travis-ci.com/snw35/le-certbot.svg?branch=master)](https://travis-ci.com/github/snw35/le-certbot)
+
 Cerbot docker container based on Alpine Linux.
 
 This container will automate the generation of letsencrypt certificates using certbot, and will run 'certbot renew' with crond to automatically renew them when they are close to expiring.
@@ -25,7 +27,3 @@ This will allow you to interactively obtain certificates and store them inside t
 docker run -it --mount source=le-certs,target=/etc/letsencrypt -p 80:80 -p 443:443 snw35/le-certbot
 ```
 You can then mount the le-certs volume into your own containers to use the certificates at /etc/letsencrypt/(your domain)/live.
-
-***
-
- * [Travis CI: ![Build Status](https://travis-ci.org/snw35/le-certbot.svg?branch=master)](https://travis-ci.org/snw35/le-certbot)
