@@ -1,4 +1,4 @@
-FROM python:3.10-alpine3.14
+FROM python:3.10-alpine3.15
 
 RUN apk --update --no-cache add \
     augeas \
