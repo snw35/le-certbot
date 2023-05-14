@@ -1,4 +1,4 @@
-FROM python:3.11.3-alpine3.17
+FROM python:3.11.3-alpine3.18
 
 RUN apk --update --no-cache add \
     augeas \
@@ -10,10 +10,10 @@ RUN apk --update --no-cache add \
 
 WORKDIR /root/
 
-ENV CERTBOT_VERSION 2.5.0
+ENV CERTBOT_VERSION 2.6.0
 ENV CERTBOT_URL https://github.com/certbot/certbot/archive
 ENV CERTBOT_FILENAME v$CERTBOT_VERSION.tar.gz
-ENV CERTBOT_SHA256 fbcd1582c3d2ac8f4b368c94f8d6a19837bdfea3a27da9b5af477177308d4b03
+ENV CERTBOT_SHA256 5f6e68269f99a97fe45e39f29b9f0ec017681c42bce410e496df710fc59ba5fe
 
 RUN apk --no-cache --virtual build.deps add \
     cargo \
