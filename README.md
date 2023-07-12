@@ -1,6 +1,6 @@
 # le-certbot
 
- * [Travis CI: ![Build Status](https://travis-ci.com/snw35/le-certbot.svg?branch=master)](https://travis-ci.com/github/snw35/le-certbot)
+ * ![Build Status](https://github.com/snw35/le-certbot/actions/workflows/update.yml/badge.svg)
 
 Cerbot docker container based on Alpine Linux.
 
