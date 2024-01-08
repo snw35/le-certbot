@@ -1,19 +1,19 @@
-FROM python:3.12.0-alpine3.18
+FROM python:3.12.1-alpine3.19
 
 RUN apk --update --no-cache add \
     augeas \
     libffi \
-    libssl1.1 \
+    libssl3 \
     openssl \
     bash \
     coreutils
 
 WORKDIR /root/
 
-ENV CERTBOT_VERSION 2.7.4
+ENV CERTBOT_VERSION 2.8.0
 ENV CERTBOT_URL https://github.com/certbot/certbot/archive
 ENV CERTBOT_FILENAME v$CERTBOT_VERSION.tar.gz
-ENV CERTBOT_SHA256 c009002cb088d196976353a43034132f5695d33f8b11d515d6bc2527c6adb191
+ENV CERTBOT_SHA256 756e2bba05bbc1f10585bea42161c44f5649d8154cb6c85a89901733544c6174
 
 RUN apk --no-cache --virtual build.deps add \
     cargo \
