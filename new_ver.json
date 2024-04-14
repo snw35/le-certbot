@@ -1,4 +1,4 @@
 {
-  "BASE": "3.12.2-alpine3.19",
+  "BASE": "3.12.3-alpine3.19",
   "CERTBOT": "2.10.0"
 }
