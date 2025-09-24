@@ -1,4 +1,14 @@
 {
-  "BASE": "3.12.5-alpine3.20",
-  "CERTBOT": "2.11.0"
+  "version": 2,
+  "data": {
+    "BASE": {
+      "version": "3.13.7-alpine3.22"
+    },
+    "CERTBOT": {
+      "version": "5.0.0",
+      "gitref": "refs/tags/v5.0.0",
+      "revision": "4508a44514e06198af46239d73f58396a61fc01d",
+      "url": "https://github.com/certbot/certbot/releases/tag/v5.0.0"
+    }
+  }
 }
